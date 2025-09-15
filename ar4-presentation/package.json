@@ -20,7 +20,8 @@
   "license": "MIT",
   "type": "module",
   "devDependencies": {
-    "@slidev/cli": "^52.1.0"
+    "@slidev/cli": "^52.1.0",
+    "playwright-chromium": "^1.55.0"
   },
   "dependencies": {
     "@slidev/theme-apple-basic": "^0.25.1"
