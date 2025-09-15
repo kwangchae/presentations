@@ -36,7 +36,7 @@ jobs:
         run: |
           cd ar4-presentation
           npm ci
-          npm run build
+          npm run build -- --base /public-slides/ar4-presentation/
 
       - name: Create deployment directory
         run: |
