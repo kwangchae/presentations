@@ -26,6 +26,27 @@ jobs:
         with:
           submodules: recursive
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: |
+            capstone-week3/package-lock.json
+            ar4-presentation/package-lock.json
+
+      - name: Install dependencies and build capstone-week3
+        run: |
+          cd capstone-week3
+          npm ci
+          npm run build
+
+      - name: Install dependencies and build ar4-presentation
+        run: |
+          cd ar4-presentation
+          npm ci
+          npm run build
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
 

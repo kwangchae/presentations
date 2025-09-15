@@ -4,8 +4,8 @@
 
 ## 📖 프레젠테이션 목록
 
-- **[Capstone Week 3](./capstone-week3/slides.md)** - 캡스톤 프로젝트 3주차 발표
-- **[AR4 HRI Platform](./ar4-presentation/slides.md)** - AR4 Human-Robot Interaction 플랫폼
+- **[Capstone Week 3](https://kwangchae.github.io/public-slides/capstone-week3/dist/)** - 캡스톤 프로젝트 3주차 발표
+- **[AR4 HRI Platform](https://kwangchae.github.io/public-slides/ar4-presentation/dist/)** - AR4 Human-Robot Interaction 플랫폼
 
 ## 🌐 Live Site
 
