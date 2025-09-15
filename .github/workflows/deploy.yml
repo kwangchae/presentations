@@ -26,17 +26,22 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Install Playwright for PDF generation
+        run: npx playwright install chromium
+
       - name: Install and build capstone-week3
         run: |
           cd capstone-week3
           npm ci
           npm run build -- --base /public-slides/capstone-week3/
+          npm run export
 
       - name: Install and build ar4-presentation
         run: |
           cd ar4-presentation
           npm ci
           npm run build
+          npm run export
 
       - name: Create deployment directory
         run: |
@@ -45,8 +50,10 @@ jobs:
           cp README.md ./deploy/
           mkdir -p ./deploy/capstone-week3
           cp -r ./capstone-week3/dist/* ./deploy/capstone-week3/
+          cp ./capstone-week3/slides-export.pdf ./deploy/capstone-week3/ 2>/dev/null || echo "PDF not found for capstone-week3"
           mkdir -p ./deploy/ar4-presentation
           cp -r ./ar4-presentation/dist/* ./deploy/ar4-presentation/
+          cp ./ar4-presentation/slides-export.pdf ./deploy/ar4-presentation/ 2>/dev/null || echo "PDF not found for ar4-presentation"
 
       - name: Setup Pages
         uses: actions/configure-pages@v4

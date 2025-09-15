@@ -71,6 +71,27 @@
             color: #888;
         }
 
+        .slide-links {
+            margin-top: 12px;
+            display: flex;
+            gap: 12px;
+        }
+
+        .slide-link {
+            font-size: 0.75rem;
+            color: #666;
+            text-decoration: none;
+            padding: 4px 8px;
+            border: 1px solid #333;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .slide-link:hover {
+            color: #ffffff;
+            border-color: #666;
+        }
+
         .footer {
             margin-top: 80px;
             padding-top: 40px;
@@ -115,17 +136,29 @@
         <h1>Slides</h1>
 
         <div class="slides-list">
-            <a href="./capstone-week3/" class="slide-item">
-                <div class="slide-date">2025.09.16</div>
-                <div class="slide-title">Capstone Week 3</div>
-                <div class="slide-event">Capstone Project</div>
-            </a>
+            <div class="slide-item">
+                <a href="./capstone-week3/" style="text-decoration: none; color: inherit; display: block;">
+                    <div class="slide-date">2025.09.16</div>
+                    <div class="slide-title">Capstone Week 3</div>
+                    <div class="slide-event">Capstone Project</div>
+                </a>
+                <div class="slide-links">
+                    <a href="./capstone-week3/" class="slide-link">🖥️ 슬라이드</a>
+                    <a href="./capstone-week3/slides-export.pdf" class="slide-link">📄 PDF</a>
+                </div>
+            </div>
 
-            <a href="./ar4-presentation/" class="slide-item">
-                <div class="slide-date">2025.09.16</div>
-                <div class="slide-title">AR4 HRI Platform Presentation</div>
-                <div class="slide-event">AR4 Human-Robot Interaction</div>
-            </a>
+            <div class="slide-item">
+                <a href="./ar4-presentation/" style="text-decoration: none; color: inherit; display: block;">
+                    <div class="slide-date">2025.09.16</div>
+                    <div class="slide-title">AR4 HRI Platform Presentation</div>
+                    <div class="slide-event">AR4 Human-Robot Interaction</div>
+                </a>
+                <div class="slide-links">
+                    <a href="./ar4-presentation/" class="slide-link">🖥️ 슬라이드</a>
+                    <a href="./ar4-presentation/slides-export.pdf" class="slide-link">📄 PDF</a>
+                </div>
+            </div>
 
             <!-- 새로운 슬라이드는 여기에 추가 -->
         </div>
