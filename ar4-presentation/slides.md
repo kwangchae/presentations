@@ -18,7 +18,7 @@ export:
   format: pdf
   timeout: 30000
   dark: false
-  withClicks: false
+  withClicks: true
   withToc: false
 fonts:
   sans: ['Noto Sans KR', 'Inter', 'ui-sans-serif', 'system-ui', 'sans-serif']
@@ -33,12 +33,11 @@ fonts:
   font-family: 'Noto Sans KR', 'Inter', ui-sans-serif, system-ui, sans-serif !important;
 }
 </style>
+
 ---
 layout: center
 class: text-center
 ---
-
-<div class="grid grid-cols-1 gap-1">
 
 # 신뢰·작업부하 인지형 HRI 플랫폼
 뇌와 로봇을 실시간으로 잇는 실험 기반 플랫폼
@@ -46,14 +45,20 @@ class: text-center
 <div class="mt-2 opacity-80">HCN Lab · 인천대학교 임베디드시스템공학과</div>
 <div class="mt-2 opacity-60">2025-09-15</div>
 <img src="/images/lab_logo.png" alt="HCN Lab" class="abs-br opacity-80 w-24 h-auto m-6" />
-</div>
 ---
 
 # 목차
 - 연구 배경 · 문제정의
-- 연구 목표 · 연구질문
-- 시스템/실험 구성 (Unity–ROS2–EEG)
-- 과업/프로토콜 (pick-and-place: 정상/오류)
+- 접근 전략 개요
+- 시뮬레이션 우선 전략
+- 플랫폼 선택: Unity & ROS2
+- 연구 목표
+- 핵심 연구질문
+- 기대 기여
+- 시스템 아키텍처
+- 하드웨어 구성
+- 소프트웨어 구성
+- pick-and-place 과업 개요
 - 진행 상황 · 데모
 - 분석 계획 (바이오마커/전처리)
 - 리스크 · 다음 단계
@@ -61,7 +66,7 @@ class: text-center
 
 # 문제정의
 
-<div class="grid grid-cols-1 gap-1">
+<div class="space-y-4">
 <v-clicks>
 
 AR4 Stack을 바탕으로 “EEG 바이오마커를 활용한 HRI 작업부하·신뢰 평가” 실험 환경을 구축·확장
@@ -80,121 +85,291 @@ AR4 Stack을 바탕으로 “EEG 바이오마커를 활용한 HRI 작업부하·
 </div>
 ---
 
-# 연구 배경 · 접근 방식 선택
+# 접근 전략 개요
 
-<div class="grid grid-cols-1 gap-1">
+<div class="space-y-2">
 <v-clicks>
 
-## 왜 이 연구를 하는가?
-- **Physical AI 시대**: 로봇이 실제 환경에서 작업 → HRI 평가의 객관성 필요
-- **기존 한계**: 주관적 설문 중심 평가로는 실시간/정량적 신뢰·작업부하 측정 어려움
-- **EEG의 가능성**: 뇌파는 인지 상태를 실시간으로 반영하는 객관적 바이오마커
+## 연구 접근법의 핵심 아이디어
 
-## 왜 이런 접근법을 택했는가?
-- **시뮬→실제 전략**: 안전하고 통제된 환경에서 검증 후 물리 환경 확장
-- **pick-and-place 선택**: 가장 기본적이면서도 오류 상황 유도 가능한 과업
-- **통합 플랫폼**: Unity-ROS2-EEG 동기화로 재현 가능한 실험 환경 구축
+### 🔬 실험적 접근
+- **객관적 측정**: 주관적 설문 → 객관적 뇌파 지표
+- **실시간 평가**: 과업 수행 중 즉시 신경 반응 측정
+- **정량적 분석**: 통계적 유의성 검증 가능한 데이터
 
-## 기대하는 기여
-- 실시간 신경인간공학적 HRI 평가 방법론 제시
-- 시뮬레이션과 물리 환경 간 EEG 반응 차이 규명
+### 🔄 순차적 확장 전략
+- **1단계**: 시뮬레이션 환경에서 안전한 검증
+- **2단계**: 물리 로봇으로 점진적 확장
+- **3단계**: VR/AR 몰입형 환경으로 발전
+
+### 🎯 과업 중심 설계
+- **기본 과업**: pick-and-place로 시작
+- **오류 시나리오**: 다양한 실패 상황 구성
+- **일반화**: 복잡한 HRI 과업으로 확장
 
 </v-clicks>
 </div>
 ---
 
-# 연구 목표 · 연구질문
-<div class="grid grid-cols-1 gap-1">
+# 시뮬레이션 우선 전략
+
+<div class="space-y-2">
 <v-clicks>
 
-## 한 줄 목표
-뇌와 로봇을 실시간으로 잇는, 신뢰·작업부하 인지형 HRI 플랫폼
+## 왜 시뮬레이션부터 시작하는가?
 
-## 구체 목표
-- pick-and-place 과업에서 정상 vs 오류 상황의 EEG 차이 검증
-- 검증된 바이오마커(예: theta 밴드 파워, ERP) 기반 분석 파이프라인 정립
-- 유사 로봇팔 과업에 일반화 가능한 HRI 평가 방법론 제시
+### 🛡️ 안전성 확보
+- **위험 최소화**: 물리적 충돌이나 손상 없음
+- **반복 실험**: 동일 조건에서 무제한 반복 가능
+- **빠른 검증**: 하드웨어 제약 없이 알고리즘 검증
 
-## 연구질문 (예시)
+### 🔬 통제된 실험 환경
+- **변수 제어**: 정확한 독립변수 조작 가능
+- **재현성**: 완전히 동일한 조건 재현
+- **데이터 품질**: 노이즈 최소화된 깨끗한 데이터
 
-- RQ1: pick-and-place 과업에서 오류 vs 정상 조건 간 EEG 바이오마커 차이는 유의한가?
-- RQ2: 신뢰 조작(피드백/오류 빈도)이 EEG 지표(예: frontal theta, ERP)에 미치는 영향은 무엇인가?
+### ⚡ 개발 효율성
+- **빠른 프로토타이핑**: 즉시 테스트 가능
+- **비용 절약**: 하드웨어 마모나 손상 없음
+- **병렬 개발**: 하드웨어 준비와 독립적으로 진행
+
 </v-clicks>
 </div>
 ---
 
-# 시스템/실험 구성 (Unity–ROS2–EEG)
+# 플랫폼 선택: Unity & ROS2
 
-<div class="mt-30">
+<div class="space-y-2">
+<v-clicks>
 
-```mermaid {theme: 'neutral', scale: 0.55}
-flowchart LR
-    subgraph EEG
-        EEGDev[EEG 장비]
-        LSL[LSL/TCP 태깅]
-        OV[OpenViBE/ActiView]
+## 🎮 Unity
+- **EEG 통합**: LSL 네이티브 지원으로 뇌파 데이터 실시간 처리
+- **3D 시각화**: 직관적인 로봇 동작 표현
+- **VR/AR 확장**: 향후 몰입형 환경 구축 가능
+
+## 🤖 ROS2
+- **로보틱스 표준**: 업계 표준 플랫폼
+- **MoveIt 2**: 모션 플래닝 및 제어
+- **실시간 성능**: 하드웨어 제어 최적화
+
+## 🔗 통합 환경
+- **WSL2**: Unity(Windows) + ROS2(Linux) 단일 머신 실행
+- **실시간 동기화**: Unity ↔ ROS2 ↔ EEG 연결
+
+</v-clicks>
+</div>
+---
+
+# 연구 목표
+
+<div class="space-y-1">
+<v-clicks>
+
+## 🎯 한 줄 목표
+뇌와 로봇을 실시간으로 잇는, **신뢰·작업부하 인지형 HRI 플랫폼**
+
+## 📋 구체적 연구 목표
+
+### 1️⃣ EEG 바이오마커 검증
+- pick-and-place 과업에서 **정상 vs 오류** 뇌파 차이 규명
+- 신뢰성 있는 신경생리학적 지표 확립
+
+### 2️⃣ 실시간 분석 파이프라인
+- **theta 파워, ERP** 중심 분석 알고리즘 구축
+- 실시간 처리 가능한 전처리 시스템
+
+### 3️⃣ HRI 평가 방법론
+- 로봇팔 과업 **일반화 가능한** 평가 프레임워크
+- 주관적 평가 보완하는 **객관적 신경지표**
+
+### 4️⃣ 통합 플랫폼 완성
+- Unity-ROS2-EEG **삼각 동기화** 시스템
+- 다양한 HRI 시나리오 적용 가능한 **범용 도구**
+
+</v-clicks>
+</div>
+---
+
+# 핵심 연구질문
+
+<div class="space-y-4">
+<v-clicks>
+
+## ❓ 주요 연구질문
+
+### RQ1: 과업 수행 중 뇌파 차이 🧠
+pick-and-place 과업에서 **오류 vs 정상 조건** 간 EEG 바이오마커의 차이는 유의한가?
+
+**🔬 가설**: 오류 상황에서 frontal theta 파워 증가, 특정 ERP 컴포넌트 변화
+
+### RQ2: 신뢰 조작의 신경 반응 ⚖️
+신뢰 조작(피드백/오류 빈도)이 **frontal theta, ERP**에 미치는 영향은?
+
+**🔬 가설**: 낮은 신뢰 조건에서 인지 부하 증가 반영
+
+### RQ3: 환경 간 반응 차이 🌐
+**시뮬레이션과 실제 환경**에서 EEG 반응 패턴의 차이는?
+
+**🔬 가설**: 물리 환경에서 더 강한 각성 및 주의 반응
+
+</v-clicks>
+</div>
+---
+
+# 기대 기여
+
+<div class="space-y-1">
+<v-clicks>
+
+## 🏆 방법론적 기여
+
+### 📊 새로운 평가 패러다임
+- **실시간 신경인간공학적 HRI 평가** 방법론 확립
+- 주관적 설문 → **객관적 뇌파 지표** 전환
+
+### 🔬 정량화 기법 개발
+- **EEG 기반 작업부하·신뢰 정량화** 기법 제시
+- 실시간 처리 가능한 **바이오마커 추출** 알고리즘
+
+## 🚀 실용적 기여
+
+### 🗺️ 환경 매핑 연구
+- 시뮬레이션↔물리 환경 간 **EEG 반응 매핑**
+- **전이 학습** 가능성 탐색
+
+### 📋 설계 가이드라인
+- HRI 시스템 설계 시 활용 가능한 **신경지표 가이드라인**
+- **적응적 HRI** 구현을 위한 실시간 피드백 시스템
+
+</v-clicks>
+</div>
+---
+
+# 시스템 아키텍처
+
+<div class="mt-0">
+
+```mermaid {theme: 'neutral', scale: 0.37, fontFamily: 'Noto Sans KR'}
+flowchart TB
+    subgraph "🧠 EEG 신호 수집"
+        EEGDev["🎧 EEG 장비<br/>(뇌파 측정)"]
+        LSL["📡 LSL<br/>(실시간 스트리밍)"]
+        OV["💻 OpenViBE<br/>(신호 처리)"]
     end
 
-    subgraph 시뮬레이션
-        Unity[Unity]
+    subgraph "🎮 시뮬레이션 환경"
+        Unity["🎯 Unity<br/>(VR/AR 시각화)"]
     end
 
-    subgraph 제어
-        ROS2[ROS2/MoveIt]
+    subgraph "🤖 로봇 제어"
+        ROS2["⚙️ ROS2/MoveIt<br/>(경로 계획)"]
     end
 
-    subgraph 하드웨어
-        AR4[AR4 로봇팔]
+    subgraph "🦾 물리 환경"
+        AR4["🦾 AR4 로봇팔<br/>(실제 작업)"]
     end
 
-    EEGDev --> OV -->|이벤트/마커| Unity
-    Unity <-->|TCP :10000| ROS2
-    ROS2 --> AR4
+    subgraph "👤 참가자"
+        User["👤 사용자<br/>(HRI 과업 수행)"]
+    end
 
-    Unity -. 과업·시각화 .- 참가자
-    AR4 -. 물리 상호작용(후속) .- 참가자
+    EEGDev --> LSL
+    LSL --> OV
+    OV -.->|"🏷️ 이벤트 마커"| Unity
+    Unity <-->|"🌐 TCP :10000<br/>명령/상태"| ROS2
+    ROS2 -->|"📊 제어 신호"| AR4
+
+    Unity -.->|"👁️ 시각적 피드백"| User
+    AR4 -.->|"🤝 물리적 상호작용"| User
+    User -.->|"🧠 뇌파 신호"| EEGDev
+
+    classDef eegStyle fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef simStyle fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef robotStyle fill:#e8f5e8,stroke:#1b5e20,stroke-width:2px
+    classDef userStyle fill:#fff3e0,stroke:#e65100,stroke-width:2px
+
+    class EEGDev,LSL,OV eegStyle
+    class Unity simStyle
+    class ROS2,AR4 robotStyle
+    class User userStyle
 ```
 </div>
 ---
 
-# 기술적 선택의 근거
+# 하드웨어 구성
 
-<div class="grid grid-cols-1 gap-1">
+<div class="grid grid-cols-1 gap-6">
 <v-clicks>
 
-## 플랫폼 선택 배경
-- **Unity**: EEG 장비 연결 편의성, VR/AR 환경 구축 용이성, 가상환경 시각화 강점
-- **ROS2**: 현재 표준 로봇 플랫폼, 하드웨어 연결 필수, 실시간 제어 지원
-- **LSL/OpenViBE**: 보유 EEG 장비와 호환, 이벤트 마커 동기화 편의성
-- **AR4**: 예산(~300만원) 내 최적 성능/페이로드 비율
+## 🧠 EEG 시스템
+- **장비**: BIOSEMI
+- **채널**: 16채널, 1000Hz
+- **전극**: 10-20 국제 표준 배치
 
-## 개발 환경 선택
-- **WSL2 채택**: Unity(Windows) + ROS2(Linux) 단일 머신 구동 필요
-- **시뮬 우선 전략**: 하드웨어 부품 지연 + Unity/ROS2 학습 곡선 고려
+## 🤖 로봇 시스템
+- **모델**: AR4 6-DOF 로봇팔
+- **페이로드**: 2.5kg
+- **작업반경**: 660mm
 
 </v-clicks>
 </div>
 ---
 
-# 과업/패러다임 (pick-and-place)
-<div class="grid grid-cols-1 gap-1">
+# 소프트웨어 구성
+
+<div class="grid grid-cols-1 gap-6">
 <v-clicks>
 
-## 과업 단계
-- 준비 → reach → grasp → lift → place → 피드백
-- 오류 주입: 미세 위치/자세 오류, 그립 실패, 충돌 회피 경로 변경 등
+## 💻 핵심 소프트웨어
+- **Unity**: 시뮬레이션 및 시각화
+- **ROS2**: 로봇 제어 및 모션 플래닝
+- **OpenViBE**: EEG 신호 처리
+- **WSL2**: 통합 개발 환경
 
-## 조건/마커 설계
-- 조건: 정상 vs 오류, 신뢰 수준(피드백 정확도) 조작
-- 마커: 준비/reach/grasp/lift/place/피드백/오류
-- 동기화: Unity→LSL 태깅, ROS 타임 병행 기록
+## 🔄 시스템 연결
+- **Unity ↔ ROS2**: TCP 통신
+- **EEG ↔ Unity**: LSL 스트리밍
+- **실시간 동기화**: 이벤트 마커 기반
+
 </v-clicks>
 </div>
 ---
+
+
+# pick-and-place 과업 개요
+
+<div class="space-y-2">
+<v-clicks>
+
+## 🎯 과업 선택 근거
+
+### 왜 pick-and-place인가?
+- **🔧 기본성**: 로봇 조작의 가장 기초적 과업
+- **📊 분해성**: 단계별 뇌파 분석 가능
+- **⚠️ 오류 유도**: 다양한 실패 시나리오 구성
+- **🚀 확장성**: 복잡한 과업의 기본 구성요소
+
+### 과업의 장점
+- **표준화**: 로보틱스 벤치마크 과업
+- **재현성**: 동일 조건 반복 실험 가능
+- **측정 용이성**: 명확한 성공/실패 기준
+
+## 📋 과업 구성 요소
+
+### 물체 및 환경
+- **목표 물체**: 표준 큐브 (50×50×50mm)
+- **시작 위치**: 고정된 픽업 지점
+- **목표 위치**: 변동 가능한 플레이스 지점
+- **장애물**: 선택적 배치 (복잡도 조절)
+
+</v-clicks>
+</div>
+---
+
 
 # 진행 상황 · 구현 과정
 
-<div class="grid grid-cols-1 gap-1">
+<div class="space-y-4">
 <v-clicks>
 
 ## 현재 위치와 경과
@@ -232,7 +407,7 @@ flowchart LR
 
 # 리스크와 대응
 
-<div class="grid grid-cols-1 gap-1">
+<div class="space-y-2">
 <v-clicks>
 
 ## 주요 리스크
@@ -251,7 +426,7 @@ flowchart LR
 ---
 
 # 다음 단계
-<div class="grid grid-cols-1 gap-1">
+<div class="space-y-2">
 <v-clicks>
 
 ## 바로 다음 단계
@@ -277,8 +452,8 @@ flowchart LR
 # 하드웨어 조립 사진
 <div class="grid grid-cols-3 gap-5 mt-5">
 <v-clicks><img src="/images/ar4_assembly_progress_1.jpg" alt="AR4 Assembly" class="mt-6 rounded shadow w-[640px] max-w-full" /></v-clicks>
-<v-clicks><img src="/images/ar4_assembly_progress_2.jpg" alt="AR4 Assembly" class="mt-6 rounded shadow w-[640px] max-w-full" /></v-clicks>
 <v-clicks><img src="/images/ar4_assembly_progress_3.jpg" alt="AR4 Assembly" class="mt-6 rounded shadow w-[640px] max-w-full" /></v-clicks>
+<v-clicks><img src="/images/ar4_assembly_progress_2.jpg" alt="AR4 Assembly" class="mt-6 rounded shadow w-[640px] max-w-full" /></v-clicks>
 </div>
 ---
 
