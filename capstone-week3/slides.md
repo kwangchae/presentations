@@ -11,7 +11,25 @@ drawings:
   persist: false
 transition: slide-left
 title: Capstone Week 3
+export:
+  format: pdf
+  timeout: 30000
+  dark: false
+  withClicks: false
+  withToc: false
+fonts:
+  sans: ['Noto Sans KR', 'Inter', 'ui-sans-serif', 'system-ui', 'sans-serif']
+  serif: ['Noto Serif KR', 'ui-serif', 'Georgia', 'serif']
+  mono: ['D2 Coding', 'Fira Code', 'ui-monospace', 'monospace']
 ---
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Noto+Serif+KR:wght@400;700&display=swap');
+
+* {
+  font-family: 'Noto Sans KR', 'Inter', ui-sans-serif, system-ui, sans-serif !important;
+}
+</style>
 
 # Capstone Week 3
 
