@@ -1,16 +1,16 @@
 ---
 theme: default
-background: https://source.unsplash.com/1920x1080/?nature,water
+background: https://source.unsplash.com/1920x1080/?technology,electronics
 class: text-center
 highlighter: shiki
 lineNumbers: false
 info: |
-  ## Capstone Week 3
-  Learn more at [Sli.dev](https://sli.dev)
+  ## 캡스톤디자인 Week 3
+  정량지표 설정 및 개선방안
 drawings:
   persist: false
 transition: slide-left
-title: Capstone Week 3
+title: 캡스톤디자인 정량지표 설정
 export:
   format: pdf
   timeout: 30000
@@ -31,87 +31,260 @@ fonts:
 }
 </style>
 
-# Capstone Week 3
+# 캡스톤디자인 Week 3
 
-프레젠테이션 제목
+## 동적 조명 로봇팔 시스템
+### 정량지표 설정 및 개선방안
 
 <div class="pt-12">
   <span @click="$slidev.nav.next" class="px-2 py-1 rounded cursor-pointer" hover="bg-white bg-opacity-10">
-    Press Space for next page <carbon:arrow-right class="inline"/>
+    발표 시작 <carbon:arrow-right class="inline"/>
   </span>
 </div>
 
-<div class="abs-br m-6 flex gap-2">
-  <button @click="$slidev.nav.openInEditor()" title="Open in Editor" class="text-xl slidev-icon-btn opacity-50 !border-none !hover:text-white">
-    <carbon:edit />
-  </button>
-  <a href="https://github.com/slidevjs/slidev" target="_blank" alt="GitHub"
-    class="text-xl slidev-icon-btn opacity-50 !border-none !hover:text-white">
-    <carbon-logo-github />
-  </a>
+---
+
+# 프로젝트 개요
+
+## 문제 정의
+- **건담 조립, 납땜 작업** 시 미세한 부품을 자세히 봐야 함
+- **머리가 조명을 가려** 손에 들고 있는 작업물에 그림자가 생김
+- **작업 효율성 및 집중도 저하** 문제 발생
+
+## 해결 방안
+- **2개의 카메라**로 손에 든 작업물을 실시간 인식
+- **동적 로봇팔**이 작업물을 따라가며 조명 제공
+- **그림자 없는 최적 조명** 환경 구현
+
+---
+
+# 정량지표 설정 기준
+
+우리가 고려한 **3가지 핵심 기준**
+
+<div class="grid grid-cols-3 gap-8 mt-8">
+
+<div v-click="1">
+
+## 1. 관련성
+**핵심 기능**에 관련된 것인가?
+
+- 조명 추적 성능
+- 작업 환경 개선도
+- 사용자 경험 향상
+
+</div>
+
+<div v-click="2">
+
+## 2. 도전성
+우리 능력의 **최상치를 조금 넘어선** 목표인가?
+
+- 실현 가능하지만 어려운 수준
+- 기술적 성장을 이끄는 목표
+- 의미 있는 성취감 제공
+
+</div>
+
+<div v-click="3">
+
+## 3. 과학적 객관성
+**측정 절차와 측정 값**에 대해 명확한가?
+
+- 정확한 측정 방법 정의
+- 재현 가능한 실험 환경
+- 객관적 판단 기준 수립
+
+</div>
+
 </div>
 
 ---
 
-# What is Slidev?
+# 정량지표 1: 반응성 🚀
 
-Slidev is a slides maker and presenter designed for developers, consist of the following features
+## 목적
+**작업 중 몰입을 보장**하기 위해 빠른 반응속도 필요
 
-- 📝 **Text-based** - focus on the content with Markdown, and then style them later
-- 🎨 **Themeable** - theme can be shared and used with npm packages
-- 🧑‍💻 **Developer Friendly** - code highlighting, live coding with autocompletion
-- 🤹 **Interactive** - embedding Vue components to enhance your expressions
-- 🎥 **Recording** - built-in recording and camera view
-- 📤 **Portable** - export into PDF, PNGs, or even a hostable SPA
-- 🛠 **Hackable** - anything possible on a webpage is possible in Slidev
+## 측정 방법
+- **A 지점 → B 지점** 이동 시의 반응 시간 + 이동 시간
+- **스테이션 좌↔우, 대각선 끝과 끝** 이동 시간 측정
+- 손 움직인 시점부터 로봇팔 도착까지의 시간 (240fps 기준)
 
-<br>
-<br>
+## 기준값
+- **1초 안에 움직임 완료** 시 통과
+- **속도: 40cm/s** 기준
+- **측정: 240fps** 카메라로 정확한 시점 측정
 
-Read more about [Why Slidev?](https://sli.dev/guide/why)
-
-<!--
-You can have `style` tag in markdown to override the style for the current page.
-Learn more: https://sli.dev/guide/syntax#embedded-styles
--->
-
-<style>
-h1 {
-  background-color: #2B90B6;
-  background-image: linear-gradient(45deg, #4EC5D4 10%, #146b8c 20%);
-  background-size: 100%;
-  -webkit-background-clip: text;
-  -moz-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  -moz-text-fill-color: transparent;
-}
-</style>
+<div v-click class="mt-4 p-4 bg-green-100 rounded">
+✅ <strong>AI 피드백:</strong> 객관적인 지표로 평가받음, 소거리 이동 포함 및 시간 지표 분리 제안
+</div>
 
 ---
 
-# Navigation
+# 정량지표 2: 조명 점유율 💡
 
-Hover on the bottom-left corner to see the navigation's controls panel, [learn more](https://sli.dev/guide/navigation.html)
+## 목적
+**작업 효율성 보장**을 위해 조명이 정확히 작업물을 비춰야 함
 
-### Keyboard Shortcuts
+## 측정 방법 (개선 전)
+- **30분 실제 조립 시간** 동안 마스킹 포인트 기준으로 조명 방향 측정
+- **95% 이상 점유** 시 성공
+- 기준: 정확도 ≥ 90/100
 
-|     |     |
-| --- | --- |
-| <kbd>right</kbd> / <kbd>space</kbd> | next animation or slide |
-| <kbd>left</kbd>  / <kbd>shift</kbd><kbd>space</kbd> | previous animation or slide |
-| <kbd>up</kbd> | previous slide |
-| <kbd>down</kbd> | next slide |
+## 측정 방법 (AI 피드백 후 개선)
+- **ROI가 충분히 밝은 시간 비율** 측정
+- **프레임 단위**로 화이트 패치 평균 밝기와 조명 밝기 비교
+- **상대밝기 0.3~0.45 이상** → "잘 비췄다"로 판정
+- **판단율 ≥ 95/100** 기준
 
-<!-- https://sli.dev/guide/animations.html#click-animations -->
-<img
-  v-click
-  class="absolute -top-9 -left-7 w-80 opacity-50"
-  src="https://sli.dev/assets/arrow-bottom-left.svg"
-/>
-<p v-after class="absolute top-23 left-45 opacity-30 transform -rotate-10">여기!</p>
+<div v-click class="mt-4 p-4 bg-blue-100 rounded">
+🔄 <strong>AI 개선사항:</strong> 스마트폰/카메라로 가능한 간단한 측정법 제안
+</div>
 
 ---
 
-# Thank you!
+# 정량지표 3: 시야 방해율 👁️
 
-질문이 있으시면 언제든지 물어보세요!
+## 목적
+**"조명을 잘 따라오는데 팔이 앞을 막는다"** 문제점 해결
+
+## 측정 방법
+- **작업 중 팔/조명**이 부품 주변 침범하거나 시야에 노출된 시간의 비율
+- **눈높이 영상**에서 픽셀 마스크로 노출 프레임 비율 측정
+- **중심좌표 간 15cm 이내** → 침범 1로 판단
+
+## 기준값
+- **로봇팔 침범: 5% 미만** (100프레임 기준)
+- **시야 노출: 2% 미만**
+
+<div v-click class="mt-4 p-4 bg-yellow-100 rounded">
+⏳ <strong>AI 피드백:</strong> 아직 검토 요청하지 않음 - 향후 개선 예정
+</div>
+
+---
+
+# 정량지표 4: 떨림 안정성 🎯
+
+## 목적
+**정확성 및 피로도 관리** - 조명이 흔들리면 그림자 떨림으로 집중도 저하
+
+## 측정 방법
+- **손의 미세한 떨림** 발생 시 조명의 떨림율 측정
+- **x/y 방향으로 손이 ±5px 움직일 때** 로봇팔의 반응성 측정
+
+## 기준값
+- **10회 중 8회 이상** 로봇팔이 움직이지 않으면 통과
+- **미세 떨림에 대한 필터링** 성능 검증
+
+<div v-click class="mt-4 p-4 bg-yellow-100 rounded">
+⏳ <strong>AI 피드백:</strong> 아직 검토 요청하지 않음 - 향후 개선 예정
+</div>
+
+---
+
+# AI 검토 결과 - 반응성 지표
+
+## 프롬프트
+> "로봇팔의 반응속도 측정 방법과 기준에 대해 검토해주세요. 실사용 환경을 고려한 개선점이 있나요?"
+
+## AI 답변 요약
+- ✅ **객관적인 지표**로 잘 설정됨
+- 🔄 **실사용 시나리오 보완** 필요: 소거리 이동 포함
+- 📊 **시간 지표 분리** 제안: 명령 개시 시점 / 명령 완료 시점
+
+## 꼬리 질문
+> "소거리 이동과 장거리 이동을 구분해서 측정하는 것이 더 정확할까요?"
+
+## 개선 결과
+- **근거리(15cm 이내)**: 0.3초 이내
+- **원거리(15cm 이상)**: 1.0초 이내
+- **시간 분리**: 인식 지연 + 이동 시간으로 구분 측정
+
+---
+
+# AI 검토 결과 - 조명 점유율
+
+## 프롬프트
+> "조명 정확도 측정에서 전문 장비 없이 간단하게 측정할 수 있는 방법이 있을까요?"
+
+## AI 답변 요약
+- 🔧 **커버리지 비율, 연속 어두움 최대 길이, 조명 균일도** → 복잡함
+- 📱 **스마트폰/카메라로 가능한 간단한 측정법** 제안
+- 💡 **ROI 밝기 기반 판정**이 더 실용적
+
+## 꼬리 질문
+> "상대밝기 기준을 어떻게 설정하는 것이 적절할까요?"
+
+## 개선 결과
+- **기존**: 마스킹 포인트 기준의 복잡한 측정
+- **개선**: 프레임별 ROI 밝기 비교로 단순화
+- **기준**: 상대밝기 0.3~0.45 이상 시 "적절한 조명"으로 판정
+
+---
+
+# 향후 개선사항
+
+## 미완료 AI 검토
+<div class="grid grid-cols-2 gap-6 mt-6">
+
+<div>
+
+### 시야 방해율
+- **검토 예정 프롬프트**
+  - "로봇팔이 작업 시야를 방해하는 정도를 객관적으로 측정하는 방법"
+- **예상 개선점**
+  - 시야각 기반 측정
+  - 작업 영역별 가중치 적용
+
+</div>
+
+<div>
+
+### 떨림 안정성
+- **검토 예정 프롬프트**
+  - "미세 떨림 필터링 성능을 정량화하는 측정 방법"
+- **예상 개선점**
+  - 주파수 분석 기반 측정
+  - 떨림 크기별 임계값 설정
+
+</div>
+
+</div>
+
+## 추가 검토사항
+- **통합 성능 지표**: 4개 지표의 가중 평균 점수
+- **실제 사용성 테스트**: 다양한 작업자 대상 피드백 수집
+- **환경 변수 고려**: 조명 환경, 작업 종류별 성능 차이
+
+---
+
+# 결론 및 다음 단계
+
+## 현재 성과
+- ✅ **4개 핵심 정량지표** 정의 완료
+- ✅ **2개 지표** AI 검토 및 개선 완료
+- ✅ **과학적이고 객관적인 측정 방법** 수립
+
+## 다음 주 계획
+- 🔄 **나머지 2개 지표** AI 검토 진행
+- 📊 **실제 측정 실험** 환경 구축
+- 🎯 **통합 성능 지표** 개발
+
+## 기대 효과
+- **객관적 성능 평가**를 통한 시스템 신뢰성 확보
+- **지속적 개선**을 위한 명확한 기준 제시
+- **실용적 활용**을 위한 사용성 검증
+
+---
+layout: center
+class: text-center
+---
+
+# 감사합니다
+
+## 질의응답 시간
+
+<div class="pt-12">
+  <span class="text-6xl">🤖💡</span>
+</div>
