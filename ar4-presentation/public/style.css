@@ -1,0 +1,181 @@
+/* Custom color variables */
+:root {
+  --primary: #4ECDC4;       /* 시안/청록색 - sudormrf primary */
+  --secondary: #FF6B35;     /* 주황색 - sudormrf secondary */
+  --accent: #FFE66D;        /* 노란색 */
+  --success: #95E77E;       /* 연두색 */
+  --warning: #FFA500;       /* 주황색 */
+  --info: #6C63FF;          /* 보라색 */
+}
+
+/* Easy-to-use classes */
+.primary {
+  color: var(--primary);
+}
+
+.secondary {
+  color: var(--secondary);
+}
+
+.accent {
+  color: var(--accent);
+}
+
+.bg-primary {
+  background-color: var(--primary);
+  color: white;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.bg-secondary {
+  background-color: var(--secondary);
+  color: white;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.bg-accent {
+  background-color: var(--accent);
+  color: #333;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+/* Highlight effects */
+.highlight {
+  background: linear-gradient(120deg, transparent 0%, var(--accent) 10%, var(--accent) 90%, transparent 100%);
+  padding: 0 4px;
+}
+
+.underline-primary {
+  border-bottom: 3px solid var(--primary);
+  padding-bottom: 2px;
+}
+
+.underline-secondary {
+  border-bottom: 3px solid var(--secondary);
+  padding-bottom: 2px;
+}
+
+/* Bold variants */
+.primary-bold {
+  color: var(--primary);
+  font-weight: bold;
+}
+
+.secondary-bold {
+  color: var(--secondary);
+  font-weight: bold;
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(45deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: bold;
+}
+
+/* Box highlights */
+.box-primary {
+  border-left: 4px solid var(--primary);
+  padding-left: 12px;
+  margin: 8px 0;
+}
+
+.box-secondary {
+  border-left: 4px solid var(--secondary);
+  padding-left: 12px;
+  margin: 8px 0;
+}
+
+/* Inline code with custom colors */
+code.primary {
+  background: rgba(78, 205, 196, 0.1);  /* Updated for cyan primary */
+  color: var(--primary);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+code.secondary {
+  background: rgba(255, 107, 53, 0.1);  /* Updated for orange secondary */
+  color: var(--secondary);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* Brand colors */
+.hf {
+  color: #fabf17;  /* HuggingFace yellow */
+}
+
+.hf-bold {
+  color: #fabf17;
+  font-weight: bold;
+}
+
+.nvidia {
+  color: #76B900;  /* NVIDIA green */
+}
+
+.nvidia-bold {
+  color: #76B900;
+  font-weight: bold;
+}
+
+.tesla {
+  color: #cc0000;  /* Tesla red */
+}
+
+.tesla-bold {
+  color: #cc0000;
+  font-weight: bold;
+}
+
+.lerobot {
+  color: #fb9c04;  /* LeRobot orange */
+}
+
+.lerobot-bold {
+  color: #fb9c04;
+  font-weight: bold;
+}
+
+/* Research specific colors */
+.eeg {
+  color: #8B5CF6;  /* Purple for EEG/brain activity */
+}
+
+.eeg-bold {
+  color: #8B5CF6;
+  font-weight: bold;
+}
+
+.robot {
+  color: #10B981;  /* Green for robotics */
+}
+
+.robot-bold {
+  color: #10B981;
+  font-weight: bold;
+}
+
+.unity {
+  color: #000000;  /* Unity black */
+}
+
+.unity-bold {
+  color: #000000;
+  font-weight: bold;
+}
+
+.ros {
+  color: #22314E;  /* ROS blue */
+}
+
+.ros-bold {
+  color: #22314E;
+  font-weight: bold;
+}
