@@ -43,7 +43,7 @@ server:
 # <span class="primary-bold">동적 조명 로봇팔</span> 시스템
 <span class="primary">정량지표 설정</span> 및 <span class="primary">AI 검토 기반 피드백</span>
 <div class="mt-20 text-xl">캡돌+i</div>
-<div class="mt-2 opacity-80">캡스톤디자인 · Week 3</div>
+<div class="mt-2 opacity-80">캡스톤디자인 / Week 3</div>
 <div class="mt-2 opacity-60">2025-09-17</div>
 
 ---
@@ -55,7 +55,7 @@ server:
 
 ## 문제 정의
 <div class="box-primary">
-<span class="primary-bold">건담 조립/납땜</span> 시 미세 부품을 자세히 봐야 함 → <span class="secondary">머리가 조명을 가려</span> 작업물에 그림자 발생 → <span class="accent">가시성 저하, 집중도·정확도 하락</span>
+<span class="primary-bold">건담 조립/납땜</span> 시 미세 부품을 자세히 봐야 함 -> <span class="secondary">머리가 조명을 가려</span> 작업물에 그림자 발생 -> <span class="accent">가시성 저하, 집중도/정확도 하락</span>
 </div>
 
 ## 해결 방안
@@ -75,7 +75,7 @@ server:
 
 ## 개요 (기존)
 - **목적**: <span class="primary">작업 몰입 보장</span>을 위한 빠른 추종성
-- **측정**: A→B 이동 시 반응 시간 + 이동 시간 (240fps)
+- **측정**: A->B 이동 시 반응 시간 + 이동 시간 (240fps)
 - **기준**: <span class="secondary-bold">1초 이내 완료</span>(40cm/s 기준)
 
 
@@ -84,7 +84,7 @@ server:
 
 ---
 
-# 정량지표 1: <span class="secondary-bold">AI 검토 → 개선</span>
+# 정량지표 1: <span class="secondary-bold">AI 검토 -> 개선</span>
 
 <div class="space-y-3">
 <v-clicks>
@@ -96,12 +96,12 @@ server:
 
 ## 인공지능 답변 (요약)
 - <span class="primary">소거리 이동 포함</span> 시나리오 권장, 반응(인식)과 이동을 분리해 측정 권장
-- <span class="primary">근거리와 원거리</span>의 별도 기준 제안, 시작·완료 시점 정의 명확화 권장
+- <span class="primary">근거리와 원거리</span>의 별도 기준 제안, 시작과 완료 시점 정의 명확화 권장
 
 ## 개선된 지표
 - **분리 지표**: 총 반응시간 = <code class="primary">인식지연</code> + <code class="secondary">이동시간</code>
-- **근거리(≤ 15cm)**: <span class="accent">총 반응시간 ≤ 0.30s</span>, 인식지연 ≤ 0.12s
-- **원거리(> 15cm)**: <span class="accent">총 반응시간 ≤ 1.00s</span>, 목표 평균 속도 ≥ 40cm/s
+- **근거리(<= 15cm)**: <span class="accent">총 반응시간 &lt;= 0.30s</span>, 인식지연 <= 0.12s
+- **원거리(> 15cm)**: <span class="accent">총 반응시간 &lt;= 1.00s</span>, 목표 평균 속도 >= 40cm/s
 
 </v-clicks>
 </div>
@@ -124,7 +124,7 @@ server:
 
 ---
 
-# 정량지표 2: <span class="secondary-bold">AI 검토 → 개선</span>
+# 정량지표 2: <span class="secondary-bold">AI 검토 -> 개선</span>
 
 <div class="space-y-3">
 <v-clicks>
@@ -140,8 +140,8 @@ server:
 
 ## 개선된 지표
 - **측정**: 프레임 단위 ROI 평균 밝기 <code class="primary">L_roi</code> / 기준 밝기 <code class="secondary">L_ref</code>
-- **판정**: 상대밝기 ≥ 0.35 → <span class="accent">"잘 비췄다"</span>
-- **목표**: <span class="accent">유효 프레임 비율 ≥ 95%</span>
+- **판정**: 상대밝기 >= 0.35 -> <span class="accent">"잘 비췄다"</span>
+- **목표**: <span class="accent">유효 프레임 비율 &gt;= 95%</span>
 
 </v-clicks>
 </div>
@@ -164,7 +164,7 @@ server:
 
 ---
 
-# 정량지표 3: <span class="secondary-bold">AI 검토 → 개선</span>
+# 정량지표 3: <span class="secondary-bold">AI 검토 -> 개선</span>
 
 <div class="space-y-3">
 <v-clicks>
@@ -179,9 +179,9 @@ server:
 - <span class="primary">연속 방해 최대 길이(0.3~0.5s)</span> 제한 권장, 근접 시 가중치 적용
 
 ## 개선된 지표
-- **시야영역**: 눈높이 카메라에서 ROI 중심을 향한 <code class="primary">30° 원추</code> 투영 다각형
-- **방해 판정**: 면적비 ≥ 10% → <span class="accent">방해 1</span>
-- **근접 가중**: ROI 중심과 로봇 최근접점 ≤ 15cm → <code class="secondary">가중 1.5배</code>
+- **시야영역**: 눈높이 카메라에서 ROI 중심을 향한 <code class="primary">30 deg 원추</code> 투영 다각형
+- **방해 판정**: 면적비 >= 10% -> <span class="accent">방해 1</span>
+- **근접 가중**: ROI 중심과 로봇 최근접점 <= 15cm -> <code class="secondary">가중 1.5배</code>
 - **목표**: <span class="accent">가중 방해 프레임 비율 < 5%</span>
 
 </v-clicks>
@@ -196,7 +196,7 @@ server:
 
 ## 개요 (기존)
 - **목적**: <span class="primary">조명 흔들림으로 인한 그림자 떨림/피로 증가</span> 방지
-- **측정**: 손의 미세 떨림(±5px) 유도 시 조명 떨림율 관찰
+- **측정**: 손의 미세 떨림(+/-5px) 유도 시 조명 떨림율 관찰
 - **기준**: <span class="secondary-bold">10회 중 8회 이상</span> 로봇팔이 움직이지 않으면 통과
 
 
@@ -205,7 +205,7 @@ server:
 
 ---
 
-# 정량지표 4: <span class="secondary-bold">AI 검토 → 개선</span>
+# 정량지표 4: <span class="secondary-bold">AI 검토 -> 개선</span>
 
 <div class="space-y-3">
 <v-clicks>
@@ -221,8 +221,8 @@ server:
 - <span class="primary">정착 성능</span>: 손이 고정되었을 때 조명도 안정적으로 유지되는지 측정
 
 ## 개선된 지표
-- **False Trigger Rate**: 손 ±5mm 미세 이동 중 로봇팔 반응 비율 <span class="accent">≤ 10%</span>
-- **정착 비율**: 손 고정 시 로봇팔이 ±1cm 안에 머문 비율 <span class="accent">≥ 90%</span>
+- **False Trigger Rate**: 손 +/-5mm 미세 이동 중 로봇팔 반응 비율 <span class="accent">&lt;= 10%</span>
+- **정착 비율**: 손 고정 시 로봇팔이 +/-1cm 안에 머문 비율 <span class="accent">&gt;= 90%</span>
 - **응답 필터**: <code class="primary">3mm 이상</code> 움직여야 로봇팔 반응 시작
 
 </v-clicks>
@@ -236,4 +236,3 @@ class: text-center
 <div class="pt-12">
   <span class="text-6xl">감사합니다</span>
 </div>
-
