@@ -27,7 +27,7 @@ fonts:
   mono: ['D2 Coding', 'Fira Code', 'ui-monospace', 'monospace']
 ---
 
-<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="style.css">
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Noto+Serif+KR:wght@400;700&display=swap');
