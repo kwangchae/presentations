@@ -1,16 +1,27 @@
 {
   "name": "capstone-week3",
-  "private": true,
+  "version": "1.0.0",
+  "description": "Capstone Week 3 Presentation",
+  "main": "index.js",
   "scripts": {
-    "build": "slidev build",
     "dev": "slidev --open",
+    "build": "slidev build",
+    "build-local": "slidev build",
     "export": "slidev export"
   },
-  "dependencies": {
-    "@slidev/cli": "latest",
-    "@slidev/theme-default": "latest"
-  },
+  "keywords": [
+    "capstone",
+    "presentation",
+    "week3"
+  ],
+  "author": "",
+  "license": "MIT",
+  "type": "module",
   "devDependencies": {
+    "@slidev/cli": "^52.1.0",
     "playwright-chromium": "^1.55.0"
+  },
+  "dependencies": {
+    "@slidev/theme-default": "latest"
   }
 }
