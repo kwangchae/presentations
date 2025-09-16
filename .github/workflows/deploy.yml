@@ -29,13 +29,13 @@ jobs:
       - name: Install and build capstone-week3
         run: |
           cd capstone-week3
-          npm ci
+          npm install
           npm run build -- --base /public-slides/capstone-week3/
 
       - name: Install and build ar4-presentation
         run: |
           cd ar4-presentation
-          npm ci
+          npm install
           npm run build -- --base /public-slides/ar4-presentation/
 
       - name: Create deployment directory
