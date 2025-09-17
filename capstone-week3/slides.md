@@ -6,7 +6,7 @@ info: |
   캡스톤디자인 Week 3 발표 자료
   제목: 동적 조명 로봇팔 시스템 정량지표 설정
   발표자: 캡스톤 팀
-  일자: 2024-09-17
+  일자: 2025-09-17
 author: 캡스톤 팀
 keywords: 로봇팔,조명,정량지표,AI검토
 layout: center
@@ -40,11 +40,11 @@ server:
 }
 </style>
 
-# <span class="primary-bold">동적 조명 로봇팔</span> 시스템
-<span class="primary">정량지표 설정</span> 및 <span class="primary">AI 검토 기반 피드백</span>
+# <div class="mt-10"><span class="primary-bold">정량지표 설정</span> 및 <span class="primary-bold"> AI 검토 기반 피드백</span></div>
 <div class="mt-20 text-xl">캡돌+i</div>
 <div class="mt-2 opacity-80">캡스톤디자인 / Week 3</div>
 <div class="mt-2 opacity-60">2025-09-17</div>
+<img src="/images/logo.png" alt="Capdol-Logo" class="abs-br opacity-100 w-50 h-auto m-5" />
 
 ---
 
@@ -59,8 +59,8 @@ server:
 </div>
 
 ## 해결 방안
-- **2개의 카메라**로 손에 든 작업물을 <span class="primary">실시간 인식</span>
-- **동적 로봇팔**이 작업물을 따라가며 <span class="primary">조명 제공</span>
+- **2개의 카메라**로 손을 <span class="primary">실시간 인식</span>
+- **동적 로봇팔**이 손을 따라가며 <span class="primary">조명 제공</span>
 - **목표**: <span class="primary-bold">그림자 없이 항상 밝은 작업 시야</span>
 
 </v-clicks>
@@ -89,13 +89,13 @@ server:
 <div class="space-y-3">
 <v-clicks>
 
-## 프롬프트 (요약)
+## 프롬프트
 <div class="box-secondary">
 "손 또는 프라모델 이동에 대해 조명이 늦지 않게 따라오는 성능을 정량화하려 합니다. 현실적인 기준과 측정법을 제안해 주세요."
 </div>
 
-## 인공지능 답변 (요약)
-- <span class="primary">소거리 이동 포함</span> 시나리오 권장, 반응(인식)과 이동을 분리해 측정 권장
+## 인공지능 답변
+- <span class="primary">소거리 이동 포함</span> 시나리오 권장, <span class="primary">인식</span>과 <span class="primary">이동</span>을 분리해 측정 권장
 - <span class="primary">근거리와 원거리</span>의 별도 기준 제안, 시작과 완료 시점 정의 명확화 권장
 
 ## 개선된 지표
@@ -129,18 +129,18 @@ server:
 <div class="space-y-3">
 <v-clicks>
 
-## 프롬프트 (요약)
+## 프롬프트
 <div class="box-secondary">
 "전문적인 장비없이 작업물이 충분히 밝게 비춰지는 시간을 정량화하려 합니다. 스마트폰/카메라만으로 가능한 측정법을 제안해 주세요."
 </div>
 
-## 인공지능 답변 (요약)
+## 인공지능 답변
 - <span class="primary">ROI 밝기 기반 판정</span> 권장, 프레임 단위로 평균/중앙값 비교
 - <span class="primary">상대밝기 임계값(0.3~0.45)</span> 활용, 연속 어두움 최대 길이 제한 권장
 
 ## 개선된 지표
 - **측정**: 프레임 단위 ROI 평균 밝기 <code class="primary">L_roi</code> / 기준 밝기 <code class="secondary">L_ref</code>
-- **판정**: 상대밝기 >= 0.35 -> <span class="accent">"잘 비췄다"</span>
+- **판정**: 상대밝기(L_roi/L_ref) >= 0.35 -> <span class="accent">"잘 비췄다"</span>
 - **목표**: <span class="accent">유효 프레임 비율 &gt;= 95%</span>
 
 </v-clicks>
@@ -169,12 +169,12 @@ server:
 <div class="space-y-3">
 <v-clicks>
 
-## 프롬프트 (요약)
+## 프롬프트
 <div class="box-secondary">
-"시야 방해율을 눈높이 카메라만으로 정량화하려 합니다. 시야각 관점의 더 견고한 정의, 연속 방해 허용치, 자동화 방법을 제안해 주세요."
+"시야 방해율을 눈높이 카메라만으로 정량화하려 합니다. 시야각 관점의 더 자세한 정의, 연속 방해 허용치를 제안해 주세요."
 </div>
 
-## 인공지능 답변 (요약)
+## 인공지능 답변
 - <span class="primary">작업자 아이 라인 기준 시야영역</span>을 다각형으로 정의하고, 로봇실루엣과의 교차 면적 비율로 방해 프레임 판정
 - <span class="primary">연속 방해 최대 길이(0.3~0.5s)</span> 제한 권장, 근접 시 가중치 적용
 
@@ -210,12 +210,12 @@ server:
 <div class="space-y-3">
 <v-clicks>
 
-## 프롬트 (요약)
+## 프롬프트
 <div class="box-secondary">
-"손의 미세 떨림에 로봇팔이 과도하게 반응하지 않도록 하는 필터링 성능을 정량화하려 합니다. 좌표 기반으로 간단히 측정할 수 있는 방법을 제안해 주세요."
+"손의 미세 떨림에 로봇팔이 과도하게 반응하지 않도록 하는 성능을 정량화하려 합니다. 좌표 기반으로 간단히 측정할 수 있는 방법을 제안해 주세요."
 </div>
 
-## 인공지능 답변 (요약)
+## 인공지능 답변
 - <span class="primary">좌표 기반 측정</span>으로 전문 장비 없이 간단한 분석 가능
 - <span class="primary">False Trigger 분석</span>: 미세 떨림에 과도한 반응하는지 판단
 - <span class="primary">정착 성능</span>: 손이 고정되었을 때 조명도 안정적으로 유지되는지 측정
@@ -233,6 +233,6 @@ layout: center
 class: text-center
 ---
 
-<div class="pt-12">
-  <span class="text-6xl">감사합니다</span>
+<div class="pt-0">
+  <span class="text-6xl">감사합니다!</span>
 </div>
