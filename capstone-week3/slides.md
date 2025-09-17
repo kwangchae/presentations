@@ -101,7 +101,7 @@ server:
 ## 개선된 지표
 - **분리 지표**: 총 반응시간 = <code class="primary">인식지연</code> + <code class="secondary">이동시간</code>
 - **시작점**: 손이 정지 -> 이동하는 시점
-- **근거리(<= 15cm)**: <span class="accent">총 반응시간 &lt;= 0.30s</span>, 인식지연 <= 0.12s
+- **근거리(<= 15cm)**: <span class="accent">총 반응시간 &lt;= 0.40s</span>, 인식지연 <= 0.20s
 - **원거리(> 15cm)**: <span class="accent">총 반응시간 &lt;= 1.00s</span>, 목표 평균 속도 >= 40cm/s
 
 </v-clicks>
@@ -184,7 +184,7 @@ server:
 ## 개선된 지표
 - **측정**: 눈과 ROI을 연결한 직선과 로봇팔 사이 최근접 거리
 - **판정**: 거리 < 20cm -> 방해, < 10cm -> 심각한 방해
-- **기준**: 방해 프레임 <- < 8%, 심각한 방해 < 2%
+- **기준**: 방해 프레임 < 8%, 심각한 방해 < 2%
 
 </v-clicks>
 </div>
@@ -224,12 +224,9 @@ server:
 
 ## 개선된 지표
 - **False Trigger Rate**: 손 +/-5mm 미세 이동 중 로봇팔 반응 비율 <span class="accent">&lt;= 10%</span>
-- **정착 비율**: 손 고정 시 로봇팔이 +/-1cm 안에 머문 비율 <span class="accent">&gt;= 90%</span>
-- **응답 필터**: <code class="primary">3mm 이상</code> 움직여야 로봇팔 반응 시작
-- **미세 떨림**: 3초 윈도우에서 ±3mm 이내 변화
-- **False Trigger**: 5% 이하
 - **정착 기준**: 손 정지 후 2초간 로봇팔 ±5mm 이내
-- **필터**: 연속 3프레임 이상 움직임만 반응
+- **미세 떨림**: 3초 윈도우에서 ±5mm 이내 변화
+- **응답 필터**: <code class="primary">10mm 이상</code> 움직여야 로봇팔 반응 시작
 </v-clicks>
 </div>
 
@@ -239,5 +236,5 @@ class: text-center
 ---
 
 <div class="pt-0">
-  <span class="text-6xl">감사합니다!</span>
+  <span class="text-6xl">감사합니다</span>
 </div>
