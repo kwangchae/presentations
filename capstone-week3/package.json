@@ -22,7 +22,7 @@
     "playwright-chromium": "^1.55.0"
   },
   "dependencies": {
-    "@slidev/theme-apple-basic": "latest",
+    "@slidev/theme-apple-basic": "^0.25.1",
     "@slidev/theme-default": "latest"
   }
 }
