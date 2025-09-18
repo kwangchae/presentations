@@ -1,0 +1,20 @@
+<svg width="220" height="220" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+  <rect width="220" height="220" fill="#FFFFFF"/>
+  <!-- Human head and torso -->
+  <circle cx="70" cy="60" r="18" fill="none" stroke="#333" stroke-width="3"/>
+  <line x1="70" y1="78" x2="70" y2="125" stroke="#333" stroke-width="3"/>
+  <!-- Ground/desk line -->
+  <line x1="20" y1="150" x2="200" y2="150" stroke="#DDD" stroke-width="2"/>
+  <!-- Robot arm approaching head (danger) -->
+  <rect x="145" y="70" width="50" height="18" rx="3" fill="#FF6B35"/>
+  <rect x="125" y="77" width="20" height="4" fill="#FF6B35"/>
+  <polygon points="125,79 112,74 112,84" fill="#FF6B35"/>
+  <!-- Distance indicator -->
+  <line x1="88" y1="78" x2="145" y2="78" stroke="#999" stroke-dasharray="4,4"/>
+  <text x="100" y="70" font-size="10" fill="#666">거리 ↓</text>
+  <!-- Labels -->
+  <text x="48" y="45" font-size="11" fill="#333">머리</text>
+  <text x="150" y="65" font-size="11" fill="#333">로봇팔</text>
+  <text x="20" y="200" font-size="12" fill="#111">자세 1: 머리 전방 숙임</text>
+</svg>
+

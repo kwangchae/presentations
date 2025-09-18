@@ -1,0 +1,18 @@
+<svg width="220" height="220" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+  <rect width="220" height="220" fill="#FFFFFF"/>
+  <!-- Human with raised hand near face -->
+  <circle cx="95" cy="60" r="16" fill="none" stroke="#333" stroke-width="3"/>
+  <line x1="95" y1="76" x2="95" y2="120" stroke="#333" stroke-width="3"/>
+  <line x1="95" y1="90" x2="112" y2="70" stroke="#333" stroke-width="3"/>
+  <line x1="112" y1="70" x2="120" y2="50" stroke="#333" stroke-width="3"/>
+  <!-- Robot arm crossing face (visual block) -->
+  <rect x="130" y="55" width="55" height="16" rx="3" fill="#FF6B35"/>
+  <rect x="115" y="62" width="15" height="4" fill="#FF6B35"/>
+  <!-- Field-of-view wedge (blocked) -->
+  <polygon points="95,60 170,35 170,85" fill="#999" opacity="0.25"/>
+  <!-- Ground line -->
+  <line x1="20" y1="150" x2="200" y2="150" stroke="#DDD" stroke-width="2"/>
+  <!-- Labels -->
+  <text x="30" y="200" font-size="12" fill="#111">자세 3: 손을 눈높이 이상으로 들기</text>
+</svg>
+

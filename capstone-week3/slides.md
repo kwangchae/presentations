@@ -146,6 +146,25 @@ server:
 
 ---
 
+# 시야 방해 스케치 (아이콘)
+
+<div class="icon-grid">
+  <div class="icon-card">
+    <img src="/images/posture1_head_forward.svg" alt="머리 전방 숙임" class="icon-illust" />
+    <div class="mt-2">자세 1: 머리 전방 숙임</div>
+  </div>
+  <div class="icon-card">
+    <img src="/images/posture2_elbow_raise_lean.svg" alt="팔꿈치 올림 / 몸 기울임" class="icon-illust" />
+    <div class="mt-2">자세 2: 팔꿈치 올림 / 몸 기울임</div>
+  </div>
+  <div class="icon-card">
+    <img src="/images/posture3_hand_high.svg" alt="손을 눈높이 이상으로 들기" class="icon-illust" />
+    <div class="mt-2">자세 3: 손을 눈높이 이상으로</div>
+  </div>
+</div>
+
+---
+
 # 측정 방법 및 도구
 
 <div class="space-y-4">
@@ -154,19 +173,48 @@ server:
 ## 하드웨어
 <div class="box-primary">
 <span class="primary-bold">가속도 센서</span>: 로봇팔 끝단 부착 (떨림 측정)
-<span class="primary-bold">고속 카메라</span>: 120fps 손 추적
-<span class="primary-bold">조도 센서</span>: ROI 밝기 실시간 측정
+<span class="primary-bold">고속 카메라</span>: 120fps 손 추적 및 밝기 측정(코너/ROI)
 </div>
 
 ## 소프트웨어
 - **모션 온셋 감지**: 손 좌표 변화량이 문턱값(예: 3cm/s) 초과하는 첫 프레임
 - **추종 정확도 계산**: 프레임별 손–광원 중심 거리 ≤ 5cm인 시간 비율
-- **기준밝기 계산**: 프레임 4모서리 평균 밝기 산출(간단 평균)
+- **카메라 설정 고정**: 자동노출/자동화이트밸런스 OFF(테스트 시작 전 고정)
+- **기준밝기 계산**: 프레임 4모서리(각 10%×10% 패치) 평균 밝기 산출
+- **거리→픽셀 변환**: 스케일 마커로 cm/px 추정(또는 깊이 센서 사용)
 - **충돌 감지**: 3D 최소거리 기반(간단 임계값)
 - **시야 차단**: 눈–손–로봇팔 각도로 차단 여부만 판정(단순 임계값)
 
 ## 테스트 프로토콜
 30분 실제 건담 조립, 속도 구간별(저속/중속/고속) 2분 씩, 3가지 자세 각 5분 별도 테스트
+
+</v-clicks>
+</div>
+
+---
+
+# 캘리브레이션 절차 (간단)
+
+<div class="space-y-3">
+<v-clicks>
+
+- 카메라 자동노출/화이트밸런스 비활성화 후 고정
+- 조명 OFF 상태로 1초간 4모서리 패치 밝기 측정 → 기준밝기 설정
+- 스케일 마커(예: 5cm)로 cm/px 환산 → 5cm 임계 거리 적용
+
+</v-clicks>
+</div>
+
+---
+
+# 평가 점수판 (간단)
+
+<div class="space-y-3">
+<v-clicks>
+
+- 반응성: 인식시간 ≤ 0.2s, 5cm 유지율 ≥ 85%  → [ Pass / Fail ]
+- 조명 안정성: 밝기 통과율 ≥ 95%, 떨림 경고율 ≤ 5% → [ Pass / Fail ]
+- 시야 방해: 각 자세 위험/방해 < 10%, 충돌 0건 → [ Pass / Fail ]
 
 </v-clicks>
 </div>
