@@ -1,14 +1,14 @@
 ---
 theme: apple-basic
-title: '동적 조명 로봇팔 시스템'
+title: '동적 조명 로봇팔 시스템 - 개선된 정량지표'
 titleTemplate: '%s - 캡스톤디자인'
 info: |
-  캡스톤디자인 Week 3 발표 자료
-  제목: 동적 조명 로봇팔 시스템 정량지표 설정
+  캡스톤디자인 Week 3 발표 자료 (개선안)
+  제목: 동적 조명 로봇팔 시스템 정량지표 개선
   발표자: 캡스톤 팀
-  일자: 2025-09-17
+  일자: 2025-09-18
 author: 캡스톤 팀
-keywords: 로봇팔,조명,정량지표,AI검토
+keywords: 로봇팔,조명,정량지표,개선안,평가반영
 layout: center
 class: text-center
 drawings:
@@ -40,193 +40,160 @@ server:
 }
 </style>
 
-# <div class="mt-10"><span class="primary-bold">정량지표 설정</span> 및 <span class="primary-bold"> AI 검토 기반 피드백</span></div>
+# <div class="mt-10"><span class="primary-bold">개선된 정량지표</span> 및 <span class="primary-bold">평가 반영</span></div>
 <div class="mt-20 text-xl">캡돌+i</div>
-<div class="mt-2 opacity-80">캡스톤디자인 / Week 3</div>
-<div class="mt-2 opacity-60">2025-09-17</div>
+<div class="mt-2 opacity-80">캡스톤디자인 / Week 3 - 개선안</div>
+<div class="mt-2 opacity-60">2025-09-18</div>
 <img src="/images/logo.png" alt="Capdol-Logo" class="abs-br opacity-100 w-50 h-auto m-5" />
 
 ---
 
-# 프로젝트 개요
+# 평가 피드백 요약
 
 <div class="space-y-4">
 <v-clicks>
 
-## 문제 정의
+## 주요 개선 사항
 <div class="box-primary">
-<span class="primary-bold">건담 조립</span>시 미세 부품을 자세히 봐야 함 -> <span class="secondary">머리가 조명을 가려</span> 작업물에 그림자 발생 -> <span class="accent">가시성 저하, 집중도 및 정확도 하락</span>
+<span class="primary-bold">정량지표 1</span>: 거리 기준(15cm) 분리 → <span class="secondary">속도 매칭 기반</span>으로 변경
+
+<span class="primary-bold">정량지표 2+4</span>: 조명 점유율과 떨림 안정성 → <span class="secondary">통합 측정</span>
+
+<span class="primary-bold">정량지표 3</span>: 시야 방해 → <span class="secondary">3가지 자세 시나리오</span> 추가
 </div>
 
-## 해결 방안
-- **2개의 카메라**로 손을 <span class="primary">실시간 인식</span>
-- **동적 로봇팔**이 손을 따라가며 <span class="primary">조명 제공</span>
-- **목표**: <span class="primary-bold">그림자 없이 항상 밝은 작업 시야</span>
+## 새로운 측정 도구
+- **가속도 센서**: 떨림 정량화
+- **속도 매칭**: 사람 손 속도 대비 로봇팔 추종 성능
 
 </v-clicks>
 </div>
 
 ---
 
-# 정량지표 1: <span class="primary-bold">반응성</span> (이동속도)
+# 개선된 정량지표 1: <span class="primary-bold">반응성</span> (간단 지표)
 
 <div class="space-y-3">
 <v-clicks>
 
-## 개요 (기존)
-- **목적**: <span class="primary">작업 몰입 보장</span>을 위한 빠른 추종성
-- **측정**: A->B 이동 시 반응 시간 + 이동 시간 (120fps)
-- **기준**: <span class="secondary-bold">1초 이내 완료</span>(40cm/s 기준)
-
-
-</v-clicks>
-</div>
-
----
-
-# 정량지표 1: <span class="secondary-bold">AI 검토 -> 개선</span>
-
-<div class="space-y-3">
-<v-clicks>
-
-## 프롬프트
+## 기존 문제점
 <div class="box-secondary">
-"손 또는 프라모델 이동에 대해 조명이 늦지 않게 따라오는 성능을 정량화하려 합니다. 현실적인 기준과 측정법을 제안해 주세요."
+<span class="secondary-bold">15cm 기준 분리</span>가 합리적이지 않음 → 실제 사용 패턴과 불일치
 </div>
 
-## 인공지능 답변
-- <span class="primary">소거리 이동 포함</span> 시나리오 권장, <span class="primary">인식</span>과 <span class="primary">이동</span>을 분리해 측정 권장
-- <span class="primary">근거리와 원거리</span>의 별도 기준 제안, 시작과 완료 시점 정의 명확화 권장
+## 개선된 지표(간단)
+- **인식 시간**: <span class="accent">0.2초 이하</span>
+  - 정의: 손이 정지해 있다가 움직이기 시작한 시점(모션 온셋)부터 로봇팔이 움직이기 시작하는 시점까지의 시간
+- **추종 정확도**: 위치 오차 5cm 이하로 유지된 시간 비율(%)
 
-## 개선된 지표
-- **분리 지표**: 총 반응시간 = <code class="primary">인식지연</code> + <code class="secondary">이동시간</code>
-- **시작점**: 손이 정지 -> 이동하는 시점
-- **근거리(<= 15cm)**: <span class="accent">총 반응시간 &lt;= 0.40s</span>, 인식지연 <= 0.20s
-- **원거리(> 15cm)**: <span class="accent">총 반응시간 &lt;= 1.00s</span>, 목표 평균 속도 >= 40cm/s
+## 합격 기준(간단)
+- 인식 시간 ≤ 0.2초
+- 5cm 이하 유지율 ≥ 85%
 
 </v-clicks>
 </div>
 
 ---
 
-# 정량지표 2: <span class="primary-bold">조명 점유율</span>
+# 통합 정량지표 2: <span class="primary-bold">조명 안정성</span>
 
 <div class="space-y-3">
 <v-clicks>
 
-## 개요 (기존)
-- **목적**: <span class="primary">세밀 작업</span>을 위해 작업물 상단이 항상 밝게 비춰져야 함
-- **측정**: 실제 조립 30분 동안 마스킹 포인트 기준으로 조명 방향 측정
-- **기준**: <span class="secondary-bold">95% 이상 점유</span> 시 성공
+## 통합 이유
+<div class="box-primary">
+조명 점유율과 떨림 안정성은 모두 <span class="primary-bold">조명 품질</span>에 직접 영향
+</div>
 
+## 측정 방법(간단)
+- **기준 밝기 정의**: 카메라 프레임 4개 모서리(좌상·우상·좌하·우하)의 평균 밝기
+- **ROI 밝기**: 손끝 중심 5cm 반경, 기준밝기의 <span class="accent">150% 이상</span>이면 ‘밝음’ 판정
+- **가속도 센서(떨림)**: 로봇팔 끝단에 부착, 임계값 초과(예: 0.5g) 시 ‘경고’로 집계
+
+## 통합 기준(간단)
+- **밝기 통과율**: ROI가 기준밝기 대비 <span class="accent">150% 이상</span>인 시간 비율 <span class="accent">≥ 95%</span>
+- **떨림 경고율**: 가속도 임계값(예: 0.5g) 초과 시간 비율 <span class="accent">≤ 5%</span>
 
 </v-clicks>
 </div>
 
 ---
 
-# 정량지표 2: <span class="secondary-bold">AI 검토 -> 개선</span>
+# 개선된 정량지표 3: <span class="primary-bold">시야 방해율</span>
 
 <div class="space-y-3">
 <v-clicks>
 
-## 프롬프트
+## 3가지 자세 시나리오(정의·측정 기준 포함)
+
+### 자세 1: <span class="secondary">머리 전방 숙임(20–30°)</span>
+- 문제: 로봇팔이 머리 전방을 스치거나 충돌 위험
+- 측정: 머리–로봇팔 최소거리 <span class="accent">＜ 15cm</span> 시 위험, 경로 예측 1초 내 침범 시 경고
+
+### 자세 2: <span class="secondary">팔꿈치 90° 올림 + 몸 좌/우 20° 기울임</span>
+- 문제: 팔꿈치/어깨와 로봇팔 간 간섭 및 시야 일부 차단
+- 측정: 팔–로봇팔 최소거리, 차단 면적 비율 <span class="accent">＞ 10%</span> 시 방해
+
+### 자세 3: <span class="secondary">손을 눈높이 이상으로 들기</span>
+- 문제: 로봇팔이 얼굴 앞을 횡단하며 시야 차단 증가
+- 측정: 시야 차단각 <span class="accent">＞ 30°</span> 또는 차단 시간 비율 <span class="accent">＞ 10%</span> 시 방해
+
+## 통합 기준
+각 자세별 5분 테스트, 위험/방해 시간 비율 <span class="accent">＜ 10%</span>, 충돌 0건
+
+</v-clicks>
+</div>
+
+---
+
+# 측정 방법 및 도구
+
+<div class="space-y-4">
+<v-clicks>
+
+## 하드웨어
+<div class="box-primary">
+<span class="primary-bold">가속도 센서</span>: 로봇팔 끝단 부착 (떨림 측정)
+<span class="primary-bold">고속 카메라</span>: 120fps 손 추적
+<span class="primary-bold">조도 센서</span>: ROI 밝기 실시간 측정
+</div>
+
+## 소프트웨어
+- **모션 온셋 감지**: 손 좌표 변화량이 문턱값(예: 3cm/s) 초과하는 첫 프레임
+- **추종 정확도 계산**: 프레임별 손–광원 중심 거리 ≤ 5cm인 시간 비율
+- **기준밝기 계산**: 프레임 4모서리 평균 밝기 산출(간단 평균)
+- **충돌 감지**: 3D 최소거리 기반(간단 임계값)
+- **시야 차단**: 눈–손–로봇팔 각도로 차단 여부만 판정(단순 임계값)
+
+## 테스트 프로토콜
+30분 실제 건담 조립, 속도 구간별(저속/중속/고속) 2분 씩, 3가지 자세 각 5분 별도 테스트
+
+</v-clicks>
+</div>
+
+---
+
+# 기대 효과 및 검증 계획
+
+<div class="space-y-4">
+<v-clicks>
+
+## 개선 효과
 <div class="box-secondary">
-"전문적인 장비없이 작업물이 충분히 밝게 비춰지는 시간을 정량화하려 합니다. 스마트폰/카메라만으로 가능한 측정법을 제안해 주세요."
+<span class="secondary-bold">더 정확한 성능 평가</span>: 실제 사용 패턴 반영
+<span class="secondary-bold">안전성 강화</span>: 다양한 자세에서의 충돌 위험 사전 검증
+<span class="secondary-bold">사용자 경험</span>: 자연스러운 작업 자세 허용
 </div>
 
-## 인공지능 답변
-- <span class="primary">ROI 밝기 기반 판정</span> 권장, 프레임 단위로 평균/중앙값 비교
-- <span class="primary">상대밝기 임계값(0.3~0.45)</span> 활용, 연속 어두움 최대 길이 제한 권장
+## 검증 일정
+- **1주차**: 하드웨어 센서 통합
+- **2주차**: 3가지 자세 시나리오 테스트
+- **3주차**: 속도 매칭 알고리즘 최적화
+- **4주차**: 통합 성능 검증
 
-## 개선된 지표
-- **ROI**: 손끝 중심 반경 5cm 원형 영역
-- **기준 밝기**: 화면 4개 모서리 평균값 (그림자 영향 최소화) 
-- **측정**: 프레임 단위 ROI 평균 밝기 <code class="primary">L_roi</code> / 기준 밝기 <code class="secondary">L_ref</code>
-- **판정**: 상대밝기(L_roi/L_ref) >= 0.35 -> <span class="accent">"잘 비췄다"</span>
-- **목표**: <span class="accent">0.5초 이상 어두우면 실패로 카운트</span>
+## 성공 기준
+모든 정량지표를 동시에 만족하는 <span class="accent">통합 점수 85점 이상</span>
 
-</v-clicks>
-</div>
-
----
-
-# 정량지표 3: <span class="primary-bold">시야 방해율</span>
-
-<div class="space-y-3">
-<v-clicks>
-
-## 개요 (기존)
-- **목적**: <span class="primary">로봇팔/조명이 시야를 가려</span> 불편을 유발하는 문제 방지
-- **측정**: 눈높이 카메라 영상에서 시야 노출/침범 프레임 비율 계산
-- **기준**: <span class="secondary-bold">팔 침범 < 5%</span>, 시야 노출 < 2%
-
-
-</v-clicks>
-</div>
-
----
-
-# 정량지표 3: <span class="secondary-bold">AI 검토 -> 개선</span>
-
-<div class="space-y-3">
-<v-clicks>
-
-## 프롬프트
-<div class="box-secondary">
-"시야 방해율을 눈높이 카메라만으로 정량화하려 합니다. 시야각 관점의 더 자세한 정의, 연속 방해 허용치를 제안해 주세요."
-</div>
-
-## 인공지능 답변
-- <span class="primary">작업자 아이 라인 기준 시야영역</span>을 다각형으로 정의하고, 로봇실루엣과의 교차 면적 비율로 방해 프레임 판정
-- <span class="primary">연속 방해 최대 길이(0.3~0.5s)</span> 제한 권장, 근접 시 가중치 적용
-
-## 개선된 지표
-- **측정**: 눈과 ROI을 연결한 직선과 로봇팔 사이 최근접 거리
-- **판정**: 거리 < 20cm -> 방해, < 10cm -> 심각한 방해
-- **기준**: 방해 프레임 < 8%, 심각한 방해 < 2%
-
-</v-clicks>
-</div>
-
----
-
-# 정량지표 4: <span class="primary-bold">떨림 안정성</span>
-
-<div class="space-y-3">
-<v-clicks>
-
-## 개요 (기존)
-- **목적**: <span class="primary">조명 흔들림으로 인한 그림자 떨림/피로 증가</span> 방지
-- **측정**: 손의 미세 떨림(+/-5px) 유도 시 조명 떨림율 관찰
-- **기준**: <span class="secondary-bold">10회 중 8회 이상</span> 로봇팔이 움직이지 않으면 통과
-
-
-</v-clicks>
-</div>
-
----
-
-# 정량지표 4: <span class="secondary-bold">AI 검토 -> 개선</span>
-
-<div class="space-y-3">
-<v-clicks>
-
-## 프롬프트
-<div class="box-secondary">
-"손의 미세 떨림에 로봇팔이 과도하게 반응하지 않도록 하는 성능을 정량화하려 합니다. 좌표 기반으로 간단히 측정할 수 있는 방법을 제안해 주세요."
-</div>
-
-## 인공지능 답변
-- <span class="primary">좌표 기반 측정</span>으로 전문 장비 없이 간단한 분석 가능
-- <span class="primary">False Trigger 분석</span>: 미세 떨림에 과도한 반응하는지 판단
-- <span class="primary">정착 성능</span>: 손이 고정되었을 때 조명도 안정적으로 유지되는지 측정
-
-## 개선된 지표
-- **False Trigger Rate**: 손 +/-5mm 미세 이동 중 로봇팔 반응 비율 <span class="accent">&lt;= 10%</span>
-- **정착 기준**: 손 정지 후 2초간 로봇팔 ±5mm 이내
-- **미세 떨림**: 3초 윈도우에서 ±5mm 이내 변화
-- **응답 필터**: <code class="primary">10mm 이상</code> 움직여야 로봇팔 반응 시작
 </v-clicks>
 </div>
 
@@ -236,5 +203,9 @@ class: text-center
 ---
 
 <div class="pt-0">
-  <span class="text-6xl">감사합니다</span>
+  <span class="text-6xl">감사합니다!</span>
+</div>
+
+<div class="mt-10 opacity-80">
+개선된 정량지표로 더 안전하고 정확한 시스템을 구현하겠습니다
 </div>
